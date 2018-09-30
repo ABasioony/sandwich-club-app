@@ -65,6 +65,8 @@ public class DetailActivity extends AppCompatActivity {
         populateUI();
         Picasso.with(this)
                 .load(sandwich.getImage())
+                .placeholder(R.drawable.user_placeholder)
+                .error(R.drawable.user_placeholder_error)
                 .into(mImageView);
 
         setTitle(sandwich.getMainName());
@@ -76,9 +78,25 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateUI() {
-        mOrginTextView.setText(" " + sandwich.getPlaceOfOrigin());
-        mAlsoKnownTextView.setText(" " +  sandwich.getAlsoKnownAs());
-        mIngrediantsTextView.setText(" " +  sandwich.getIngredients());
-        mDescTextView.setText(" " + sandwich.getDescription());
+        if (sandwich.getPlaceOfOrigin().isEmpty()){
+            mOrginTextView.setText("Data is Empty");
+        }else {
+            mOrginTextView.setText(" " + sandwich.getPlaceOfOrigin());
+        }
+        if(sandwich.getAlsoKnownAs().isEmpty()){
+            mAlsoKnownTextView.setText("Data is Empty");
+        } else {
+            mAlsoKnownTextView.setText(" " + sandwich.getAlsoKnownAs());
+        }
+        if(sandwich.getIngredients().isEmpty()){
+            mIngrediantsTextView.setText("Data is Empty");
+        } else {
+            mIngrediantsTextView.setText(" " +  sandwich.getIngredients());
+        }
+        if(sandwich.getDescription().isEmpty()){
+            mDescTextView.setText("Data is Empty");
+        } else {
+            mDescTextView.setText(" " + sandwich.getDescription());
+        }
     }
 }
